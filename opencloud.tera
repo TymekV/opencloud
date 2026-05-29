@@ -1,0 +1,73 @@
+---
+whiskers:
+  version: "^2.9.0"
+  filename: "theme/theme.json"
+---
+{# vim:set ft=json: #}{
+  "clients": {
+    "android": {},
+    "desktop": {},
+    "ios": {},
+    "web": {
+      "defaults": {
+        "logo": "themes/opencloud/assets/logo.svg",
+        "logoMobile": "themes/opencloud/assets/logo-mobile.svg",
+        "favicon": "themes/opencloud/assets/favicon.svg"
+      },
+      "themes": [
+        {%- for id, flavor in flavors %}
+        {
+          "label": "Catppuccin {{flavor.name}}",
+          "isDark": {{flavor.dark}},
+          "designTokens": {
+            "roles": {
+              "primary": "#{{flavor.colors.mauve.hex}}",
+              "onPrimary": "#003543",
+              "primaryContainer": "#004e60",
+              "onPrimaryContainer": "#b7eaff",
+              "secondary": "#{{flavor.colors.subtext1.hex}}",
+              "onSecondary": "#{{flavor.colors.text.hex}}",
+              "secondaryContainer": "#{{flavor.colors.mauve | mod(opacity=0.3) | hex}}",
+              "onSecondaryContainer": "#{{flavor.colors.text.hex}}",
+              "tertiary": "#c3c3eb",
+              "onTertiary": "#2c2e4d",
+              "tertiaryContainer": "#424465",
+              "onTertiaryContainer": "#e0e0ff",
+              "error": "#ffb4ab",
+              "onError": "#690005",
+              "errorContainer": "#93000a",
+              "onErrorContainer": "#ffb4ab",
+              "background": "#{{flavor.colors.mantle.hex}}",
+              "onBackground": "#{{flavor.colors.text.hex}}",
+              "surface": "#{{flavor.colors.base.hex}}",
+              "onSurface": "#{{flavor.colors.text.hex}}",
+              "surfaceVariant": "#40484c",
+              "onSurfaceVariant": "#bfc8cc",
+              "outline": "#{{flavor.colors.overlay0.hex}}",
+              "outlineVariant": "#40484c",
+              "shadow": "#000000",
+              "scrim": "#000000",
+              "inverseSurface": "#e1e3e4",
+              "inverseOnSurface": "#2e3132",
+              "inversePrimary": "#00677f",
+              "primaryFixed": "#b7eaff",
+              "onPrimaryFixed": "#001f28",
+              "secondaryFixed": "#cfe6f1",
+              "onSecondaryFixed": "#071e26",
+              "tertiaryFixed": "#e0e0ff",
+              "onTertiaryFixed": "#171937",
+              "surfaceDim": "#111415",
+              "surfaceBright": "#373a3b",
+              "surfaceContainerLowest": "#0c0f10",
+              "surfaceContainerLow": "#191c1d",
+              "surfaceContainer": "#{{flavor.colors.mantle.hex}}",
+              "surfaceContainerHigh": "#{{flavor.colors.surface0.hex}}",
+              "surfaceContainerHighest": "#{{flavor.colors.surface0.hex}}"
+            }
+          }
+        }{% if not loop.last %},{% endif %}
+        {%- endfor %}
+      ]
+    }
+  }
+}
